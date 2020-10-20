@@ -1,0 +1,19 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatekeeper-policy-lib
+  namespace: argocd
+spec:
+  project: core-components
+  source:
+    repoURL: https://github.com/dnascimento/eks-apps.git
+    targetRevision: HEAD
+    path: policies/gatekeeper-policy-lib
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gatekeeper-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

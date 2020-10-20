@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupiter-notebook
+  namespace: tensorflow
+spec:
+  selector:
+    matchLabels:
+      app: jupiter-notebook
+  template:
+    metadata:
+      labels:
+        app: jupiter-notebook
+    spec:
+      containers:
+      - image: jupyter/tensorflow-notebook
+        name: notebook-2

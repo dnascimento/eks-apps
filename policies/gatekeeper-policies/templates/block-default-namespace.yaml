@@ -1,0 +1,19 @@
+---
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: DisallowedNamespaces
+metadata:
+  name: block-default-namespace
+spec:
+  enforcementAction: {{ .Values.enforcementAction }}
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+      - apiGroups: ["apps"]
+        kinds: ["Deployment"]
+    excludedNamespaces:
+      - "argocd"
+      - "kube-system"
+  parameters:
+    namespaces:
+      - "default"

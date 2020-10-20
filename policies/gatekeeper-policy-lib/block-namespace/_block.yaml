@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-opa
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: test-opa
+  template:
+    metadata:
+      labels:
+        app: test-opa
+    spec:
+      containers:
+        - image: kalilinux/kali
+          name: test-opa

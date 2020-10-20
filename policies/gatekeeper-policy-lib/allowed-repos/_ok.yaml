@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-opa
+spec:
+  selector:
+    matchLabels:
+      app: test-opa
+  template:
+    metadata:
+      labels:
+        app: test-opa
+    spec:
+      containers:
+        - image: openpolicyagent/opa:0.9.2
+          name: test-opa

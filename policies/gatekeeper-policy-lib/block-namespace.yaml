@@ -1,0 +1,29 @@
+---
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: disallowednamespaces
+spec:
+  crd:
+    spec:
+      names:
+        kind: DisallowedNamespaces
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          properties:
+            repos:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package disallowedNamespaces
+
+        violation[{"msg": msg}] {
+          spec := input.review.object
+          disallowed := { spec.metadata.namespace == input.parameters.namespaces[_]}
+          any(disallowed)
+          msg := sprintf("<%v> has an invalid namespace <%v>, disallowed namespaces are %v", [spec.metadata.name, spec.metadata.namespace, input.parameters.namespaces])
+        }
