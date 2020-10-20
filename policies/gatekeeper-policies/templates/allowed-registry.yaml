@@ -17,5 +17,4 @@ spec:
       - "gatekeeper"
   parameters:
     repos:
-      - "openpolicyagent/opa"
-      # - "jupyter/tensorflow-notebook"
+      - "xxxxxxx.dkr.ecr.ap-southeast-2.amazonaws.com"
