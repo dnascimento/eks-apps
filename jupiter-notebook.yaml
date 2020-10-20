@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
       - image: jupyter/tensorflow-notebook
-        name: notebook-2
+        name: notebook
