@@ -1,1 +1,1 @@
-enforcementAction: dryrun
+enforcementAction: deny
